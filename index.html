@@ -1,15 +1,147 @@
-<div class="texto">
-    <p>❤️</p>
-    <br><br>
-    <p>Eres una persona muy especial.</p>
-    <br><br>
-    <p>Gracias por formar parte de mi vida.</p>
-    <br><br>
-    <p>💕💕💕💕💕💕💕💕💕💕💕💕💕💕</p>
-    <br><br><br><br><br><br><br><br><br><br>
-    <p>⭐ Sigue bajando ⭐</p>
-    <br><br><br><br><br><br><br><br><br><br>
-    <p>❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</p>
-    <br><br><br><br><br><br><br><br><br><br>
-    <p>Te quiero muchísimo ❤️</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hola ❤️</title>
+
+<style>
+body{
+    margin:0;
+    background:#5a0000;
+    color:white;
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+}
+
+.container{
+    z-index:10;
+}
+
+h1{
+    font-size:4rem;
+    text-shadow:0 0 15px pink;
+}
+
+button{
+    padding:15px 35px;
+    font-size:22px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    margin:10px;
+}
+
+#si{
+    background:#ff4d6d;
+    color:white;
+}
+
+#no{
+    background:#222;
+    color:white;
+    position:absolute;
+}
+
+#mensaje{
+    margin-top:20px;
+    font-size:1.4rem;
+}
+
+.flotante{
+    position:absolute;
+    animation:subir linear infinite;
+    user-select:none;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(100vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(-120vh) rotate(360deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="particulas"></div>
+
+<div class="container">
+    <h1>Hola ❤️</h1>
+
+    <button id="si">Sí 💖</button>
+    <button id="no">No 😢</button>
+
+    <div id="mensaje"></div>
 </div>
+
+<script>
+
+// Corazones y estrellas
+const particulas = document.getElementById("particulas");
+
+for(let i=0;i<50;i++){
+
+    const e=document.createElement("div");
+
+    e.className="flotante";
+    e.innerHTML=Math.random()>0.5 ? "❤️" : "⭐";
+
+    e.style.left=Math.random()*100+"vw";
+    e.style.fontSize=(15+Math.random()*30)+"px";
+    e.style.opacity=Math.random();
+    e.style.animationDuration=(8+Math.random()*10)+"s";
+
+    particulas.appendChild(e);
+}
+
+let clicksNo=0;
+
+const no=document.getElementById("no");
+const si=document.getElementById("si");
+const mensaje=document.getElementById("mensaje");
+
+no.addEventListener("mouseover",()=>{
+
+    const x=Math.random()*(window.innerWidth-150);
+    const y=Math.random()*(window.innerHeight-80);
+
+    no.style.left=x+"px";
+    no.style.top=y+"px";
+});
+
+no.addEventListener("click",()=>{
+
+    clicksNo++;
+
+    if(clicksNo>=1){
+        mensaje.innerHTML="Dale al sí, no sea mala ❤️";
+    }
+
+    if(clicksNo>=3){
+        mensaje.innerHTML="¿Como que no, sucie? 😭";
+    }
+});
+
+si.addEventListener("click",()=>{
+
+    document.body.innerHTML=`
+    <div style="text-align:center;">
+        <h1 style="font-size:4rem;">💖 Te quiero mucho ❤️ 💖</h1>
+        <h2>🥰</h2>
+    </div>
+    `;
+});
+
+</script>
+
+</body>
+</html>
